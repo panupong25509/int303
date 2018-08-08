@@ -11,13 +11,13 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import prime.number.model.CheckPrimeNumber;
+import prime.number.model.SimpleCalculator;
 
 /**
  *
- * @author Joknoi
+ * @author INT303
  */
-public class PrimeNumberServlet extends HttpServlet {
+public class VerySimpleCalculatorServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -28,35 +28,48 @@ public class PrimeNumberServlet extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
             try {
-                String number = request.getParameter("number");
-                int numberInt = Integer.valueOf(number);
-                
-                CheckPrimeNumber cp = new CheckPrimeNumber(numberInt);
-                request.setAttribute("primenumber", cp);
-                getServletContext().getRequestDispatcher("/PrimeNumberView.jsp").forward(request, response);
+                String xStr = request.getParameter("x");
+                String yStr = request.getParameter("y");
+                String operator = request.getParameter("operator");
+
+                double x = Double.valueOf(xStr);
+                double y = Double.valueOf(yStr);
+                SimpleCalculator sc = new SimpleCalculator(x,y,operator);
+                request.setAttribute("calculator", sc);
+                getServletContext().getRequestDispatcher("/SimpleCalculatorView.jsp").forward(request, response);
+//                double result = 0;
+//                if (operator.equalsIgnoreCase("+")) {
+//                    result = x + y;
+//                    operator = "+";
+//                } else if (operator.equalsIgnoreCase("-")) {
+//                    result = x - y;
+//                } else if (operator.equalsIgnoreCase("*")) {
+//                    result = x * y;
+//                } else if (operator.equalsIgnoreCase("/")) {
+//                    result = x / y;
+//                }
 //                out.println("<!DOCTYPE html>");
 //                out.println("<html>");
 //                out.println("<head>");
-//                out.println("<title>Servlet PrimeNumberServlet</title>");
+//                out.println("<title>Servlet VerySimpleCalculatorServlet</title>");
 //                out.println("</head>");
 //                out.println("<body>");
-//                out.println("<h1>"+cp.toString()+" </h1>");
+//                out.println("<h1> "+sc.toString()+"</h1>\n");
 //                out.println("</body>");
 //                out.println("</html>");
             } catch (Exception e) {
                 out.println("<!DOCTYPE html>");
                 out.println("<html>");
                 out.println("<head>");
-                out.println("<title>Servlet PrimeNumberServlet</title>");
+                out.println("<title>Servlet VerySimpleCalculatorServlet</title>");
                 out.println("</head>");
                 out.println("<body>");
-                out.println("<h1>Error !!!</h1>");
+                out.println(String.format("<h1> กรอกผิดอะครับ กลับไปกรอกใหม่นะครับ</h1>"));
                 out.println("</body>");
                 out.println("</html>");
             }

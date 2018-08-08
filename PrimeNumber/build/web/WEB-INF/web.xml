@@ -4,9 +4,17 @@
         <servlet-name>PrimeNumberServlet</servlet-name>
         <servlet-class>prime.number.servlet.PrimeNumberServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>VerySimpleCalculatorServlet</servlet-name>
+        <servlet-class>prime.number.servlet.VerySimpleCalculatorServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>PrimeNumberServlet</servlet-name>
         <url-pattern>/PrimeNumberServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>VerySimpleCalculatorServlet</servlet-name>
+        <url-pattern>/VerySimpleCalc</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -17,19 +17,19 @@ public class CheckPrimeNumber {
         this.number = number;
     }
 
-    public String check() {
+    public String getCheck() {
         int count = 0;
-        if (this.number != 1) {
-            for (int i = this.number; i > 0; i--) {
-                if ((this.number % i) == 0) {
-                    count++;
-                }
+        for (int i = this.number; i > 0; i--) {
+            if ((this.number % i) == 0) {
+                count++;
             }
-        } else {
-            count++;
         }
-        if(count==2){return "Prime number";}
-        else{return "Not Prime number";}
+
+        if (count == 2) {
+            return "is prime number";
+        } else {
+            return "is not prime number";
+        }
     }
 
     public int getNumber() {
@@ -42,7 +42,7 @@ public class CheckPrimeNumber {
 
     @Override
     public String toString() {
-        return "This is "+check();
+        return this.number + " is " + getCheck();
     }
 
 }
