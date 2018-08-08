@@ -11,6 +11,32 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
     </head>
+    <style>
+        body {
+            background-color: #ea9696;
+            text-align: center;
+            font-family: 'Hanalei Fill', cursive;
+        }
+/*        div {
+            border: 1px solid black;
+            border-radius: 8px;
+            background-color: white;
+        }
+        form {
+            display: inline-block;
+        }
+        input {
+            text-align: center;
+            border: 1px solid black;
+            border-radius: 8px;
+        }
+        p{
+            display: inline-block;
+        }
+        .result {
+            color: cadetblue;
+        }*/
+    </style>
     <body>
         <h1>Result ::</h1><hr>
         <table>

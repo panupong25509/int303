@@ -8,6 +8,10 @@
         <servlet-name>VerySimpleCalculatorServlet</servlet-name>
         <servlet-class>prime.number.servlet.VerySimpleCalculatorServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ProductList</servlet-name>
+        <servlet-class>product.servlet.ProductListServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>PrimeNumberServlet</servlet-name>
         <url-pattern>/PrimeNumberServlet</url-pattern>
@@ -15,6 +19,10 @@
     <servlet-mapping>
         <servlet-name>VerySimpleCalculatorServlet</servlet-name>
         <url-pattern>/VerySimpleCalc</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ProductList</servlet-name>
+        <url-pattern>/ProductList</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

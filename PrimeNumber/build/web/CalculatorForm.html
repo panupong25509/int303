@@ -10,18 +10,67 @@ and open the template in the editor.
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
+    <style>
+        body {
+            background-color: #ea9696;
+            text-align: center;
+            font-family: 'Hanalei Fill', cursive;
+        }
+        input,select,h1,form {
+            text-align: center;
+            border: 1px solid transparent;
+            border-radius: 8px;
+            animation: infinite shake 0.82s cubic-bezier(.36,.07,.19,.97) both;
+            transform: translate3d(0, 0, 0);
+            backface-visibility: hidden;
+            perspective: 1000px;
+        }
+        /*        img {
+                    width: 10vw;
+                    margin: 50px;
+                    margin-top: 10px;
+                }
+                img:hover {
+                    animation: infinite shake 0.82s cubic-bezier(.36,.07,.19,.97) both;
+                    transform: translate3d(0, 0, 0);
+                    backface-visibility: hidden;
+                    perspective: 1000px;
+                }
+                p {
+                    font-size: 70px;
+                    color : white;
+                }*/
+
+        @keyframes shake {
+            10%, 90% {
+                transform: translate3d(0, -1px, 0);
+            }
+
+            20%, 80% {
+                transform: translate3d(0, 2px, 0);
+            }
+
+            30%, 50%, 70% {
+                transform: translate3d(0, -4px, 0);
+            }
+
+            40%, 60% {
+                transform: translate3d(0, 4px, 0);
+            }
+        }
+    </style>
     <body>
         <h1>Calculator</h1><hr>
         <form action="VerySimpleCalc" method="post">
-            x=<input style="background-color: cornsilk" type="text" required name="x"/>
-            operator=
+            x = <input style="background-color: cornsilk" type="text" required name="x"/>
+            operator = 
             <select style="background-color: cornsilk" name="operator">
                 <option value="+">+</option>
                 <option value="-">-</option>
                 <option value="*">x</option>
                 <option value="/">/</option>
             </select>
-            y=<input style="background-color: cornsilk" type="text" required name="y"/>
+            y = <input style="background-color: cornsilk" type="text" required name="y"/>
             <input style="background-color: cornsilk" type="submit"/>
         </form><hr>
     </body>
