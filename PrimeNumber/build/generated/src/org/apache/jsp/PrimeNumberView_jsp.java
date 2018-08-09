@@ -76,7 +76,9 @@ public final class PrimeNumberView_jsp extends org.apache.jasper.runtime.HttpJsp
       out.write("        }\n");
       out.write("    </style>\n");
       out.write("    <body>\n");
-      out.write("        <div><h1>Check Prime Number</h1></div><hr>\n");
+      out.write("        <div><h1>Check Prime Number ");
+      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${pn}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+      out.write("</h1></div><hr>\n");
       out.write("        <p>Enter number : </p>\n");
       out.write("        <form action=\"PrimeNumberServlet\" method=\"post\">\n");
       out.write("            <input type=\"text\" name=\"number\"/>\n");

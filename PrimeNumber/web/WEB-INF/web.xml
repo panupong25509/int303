@@ -12,6 +12,14 @@
         <servlet-name>ProductList</servlet-name>
         <servlet-class>product.servlet.ProductListServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AddItemToCartServlet</servlet-name>
+        <servlet-class>product.servlet.AddItemToCartServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ShowCartServlet</servlet-name>
+        <servlet-class>product.servlet.ShowCartServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>PrimeNumberServlet</servlet-name>
         <url-pattern>/PrimeNumberServlet</url-pattern>
@@ -23,6 +31,14 @@
     <servlet-mapping>
         <servlet-name>ProductList</servlet-name>
         <url-pattern>/ProductList</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddItemToCartServlet</servlet-name>
+        <url-pattern>/AddItemToCart</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ShowCartServlet</servlet-name>
+        <url-pattern>/ShowCart</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

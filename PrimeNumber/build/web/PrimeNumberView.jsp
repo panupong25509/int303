@@ -37,13 +37,13 @@
         }
     </style>
     <body>
-        <div><h1>Check Prime Number</h1></div><hr>
+        <div><h1>Check Prime Number ${pn}</h1></div><hr>
         <p>Enter number : </p>
         <form action="PrimeNumberServlet" method="post">
             <input type="text" name="number"/>
             <input type="submit"/>
         </form>
         <hr>
-        <h1> :: Result :: </h1><h1 class="result"> ${primenumber.number} ${primenumber.check}</h1> 
+        <h1> :: Result :: </h1><h1 class="result"> ${pn.number} ${pn.check}</h1> 
     </body>
 </html>

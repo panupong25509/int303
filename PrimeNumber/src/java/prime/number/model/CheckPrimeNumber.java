@@ -39,10 +39,10 @@ public class CheckPrimeNumber {
     public void setNumber(int number) {
         this.number = number;
     }
-
-    @Override
-    public String toString() {
-        return this.number + " is " + getCheck();
-    }
+//
+//    @Override
+//    public String toString() {
+//        return this.number + " is " + getCheck();
+//    }
 
 }
