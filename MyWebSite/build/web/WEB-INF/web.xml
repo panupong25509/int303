@@ -4,9 +4,41 @@
         <servlet-name>SimpleCalculatorSerlet</servlet-name>
         <servlet-class>simple.calculator.servlet.SimpleCalculatorSerlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ProductListServlet</servlet-name>
+        <servlet-class>product.list.servlet.ProductListServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AddItemServlet</servlet-name>
+        <servlet-class>product.list.servlet.AddItemServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>RemoveItemServlet</servlet-name>
+        <servlet-class>product.list.servlet.RemoveItemServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CalNumberServlet</servlet-name>
+        <servlet-class>cal.number.servlet.CalNumberServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>SimpleCalculatorSerlet</servlet-name>
         <url-pattern>/SimpleCalc</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ProductListServlet</servlet-name>
+        <url-pattern>/ProductList</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddItemServlet</servlet-name>
+        <url-pattern>/AddItem</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RemoveItemServlet</servlet-name>
+        <url-pattern>/RemoveItem</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CalNumberServlet</servlet-name>
+        <url-pattern>/CalNumber</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

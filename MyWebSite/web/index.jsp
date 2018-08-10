@@ -4,6 +4,9 @@
     Author     : Joknoi
 --%>
 
+<%@page import="java.util.List"%>
+<%@page import="product.mockup.model.Product"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -30,6 +33,9 @@
         <!-- Custom styles for this template -->
         <link href="css/agency.css" rel="stylesheet">
 
+        <!-- data table -->
+        <link rel="stylesheet" href="css/datatables.css" />
+
     </head>
 
     <body id="page-top">
@@ -50,15 +56,21 @@
                         <li class="nav-item">
                             <a class="nav-link js-scroll-trigger" href="#simplecalc">Simple Calculator</a>
                         </li>
-                        <li class="nav-item">
+<!--                        <li class="nav-item">
                             <a class="nav-link js-scroll-trigger" href="#primenumber">Prime nummber Checked</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link js-scroll-trigger" href="#registerit">Register IT</a>
-                        </li>
+                        </li>-->
                         <li class="nav-item">
                             <a class="nav-link js-scroll-trigger" href="#productlist">Product List</a>
-                        </li>
+                        </li> 
+                        <li class="nav-item">
+                            <a class="nav-link js-scroll-trigger" href="#tablecal">แม่สูตรคูณ</a>
+                        </li> 
+                        <li class="nav-item">
+                            <a class="nav-link js-scroll-trigger" href="#cart"><i class="fa fa-cart-plus"></i> (${cart.totalQuantity})</a>
+                        </li>    
                     </ul>
                 </div>
             </div>
@@ -66,7 +78,7 @@
 
         <!-- Header -->
         <header class="masthead">
-            <div class="container">
+            <div class="container" style="min-height: 100vh;">
                 <div class="intro-text">
                     <div class="col-sm-4 mx-auto">
                         <div class="team-member">
@@ -97,7 +109,7 @@
         </header>
 
         <!-- All -->
-        <section id="func">
+        <section style="min-height: 100vh;" id="func">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-12 text-center">
@@ -106,51 +118,47 @@
                     </div>
                 </div>
                 <div class="row text-center">
-                    <a href="#simplecalc" style="text-decoration: none;" class="col-md-3">
+                    <a href="#simplecalc" style="text-decoration: none;" class="col-md-3 js-scroll-trigger">
                         <div style="cursor: pointer;" >
                             <span class="fa-stack fa-4x">
                                 <i class="fa fa-circle fa-stack-2x text-primary"></i>
                                 <i class="fa fa-calculator fa-stack-1x fa-inverse"></i>
                             </span>
                             <h4 class="service-heading">Simple Calculator</h4>
-                            <!--<p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.</p>-->
                         </div>
                     </a>
-                    <a href="index.html" style="text-decoration: none;" class="col-md-3">
+                    <a href="#page-top" style="text-decoration: none;" class="col-md-3 js-scroll-trigger">
                         <div style="cursor: pointer;">
                             <span class="fa-stack fa-4x">
                                 <i class="fa fa-circle fa-stack-2x text-primary"></i>
                                 <i class="fa fa-check fa-stack-1x fa-inverse"></i>
                             </span>
                             <h4 class="service-heading">Prime number Checked</h4>
-                            <!--<p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.</p>-->
                         </div>
                     </a>
-                    <a href="index.html" style="text-decoration: none;" class="col-md-3">
+                    <a href="#page-top" style="text-decoration: none;" class="col-md-3 js-scroll-trigger">
                         <div style="cursor: pointer;">
                             <span class="fa-stack fa-4x">
                                 <i class="fa fa-circle fa-stack-2x text-primary"></i>
                                 <i class="fa fa-registered fa-stack-1x fa-inverse"></i>
                             </span>
                             <h4 class="service-heading">Register IT</h4>
-                            <!--<p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.</p>-->
                         </div>
                     </a>
-                    <a href="index.html" style="text-decoration: none;" class="col-md-3">
+                    <a href="#productlist" style="text-decoration: none;" class="col-md-3 js-scroll-trigger">
                         <div style="cursor: pointer;">
                             <span class="fa-stack fa-4x">
                                 <i class="fa fa-circle fa-stack-2x text-primary"></i>
                                 <i class="fa fa-shopping-basket fa-stack-1x fa-inverse"></i>
                             </span>
                             <h4 class="service-heading">Product List</h4>
-                            <!--<p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.</p>-->
                         </div>
                     </a>
                 </div>
             </div>
         </section>
         <!-- SimpleCalc -->
-        <section id="simplecalc">
+        <section style="min-height: 100vh;background-color: #fed136;" id="simplecalc">
             <div class="container">
                 <div class="row">
                     <div class="col-8 mx-auto">
@@ -181,349 +189,133 @@
                 </div>
             </div>
         </section>
+        <!-- Product List -->
+        <section style="min-height: 100vh;" id="productlist">
+            <div class="container">
+                <div class="row">
+                    <div class="col-10 mx-auto">
+                        <% if (session.getAttribute("products") == null) { %>
+                        <div>
+                            <a href="ProductList"><button>Shopping</button></a>
+                        </div>
+                        <% } else { %>
+                        <table id="example" class="table" style="display: block;width: 100%;max-height: 50vh;overflow-y: auto;-ms-overflow-style: -ms-autohiding-scrollbar;">
+                            <thead>
+                            <th>#</th>
+                            <th>No</th>
+                            <th>Product Code</th>
+                            <th>Product Name</th>
+                            <th>Product Line</th>
+                            <th>Scale</th>
+                            <th>Price</th>
+                            <th>Add to Cart</th>
+                            </thead>
+                            <tbody>
+                                <c:forEach items="${products}" var="p" varStatus="vs">
+                                    <tr>
+                                        <td><img src="model-images/${p.productCode}.jpg" width="120"/></td>
+                                        <td>${vs.count}</td>
+                                        <td>${p.productCode}</td>
+                                        <td>${p.productName}</td>
+                                        <td>${p.productLine}</td> 
+                                        <td>${p.productScale}</td> 
+                                        <td>${p.msrp}</td>
+                                        <td>
+                                            <form action="AddItem" method="post">
+                                                <input type="hidden" value="${p.productCode}" name="productCode"/>
+                                                <input type="submit" value="Add To Cart"/>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                </c:forEach>
+                            </tbody>
+                        </table>
+                        <% }%>
 
-        <!--     Portfolio Grid 
-            <section class="bg-light" id="portfolio">
-              <div class="container">
-                <div class="row">
-                  <div class="col-lg-12 text-center">
-                    <h2 class="section-heading text-uppercase">Portfolio</h2>
-                    <h3 class="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3>
-                  </div>
+                    </div>
                 </div>
+            </div>
+        </section>
+        <!-- Cart -->
+        <section style="min-height: 100vh;background-color: #fed136;" id="cart">
+            <div class="container">
                 <div class="row">
-                  <div class="col-md-4 col-sm-6 portfolio-item">
-                    <a class="portfolio-link" data-toggle="modal" href="#portfolioModal1">
-                      <div class="portfolio-hover">
-                        <div class="portfolio-hover-content">
-                          <i class="fa fa-plus fa-3x"></i>
-                        </div>
-                      </div>
-                      <img class="img-fluid" src="img/portfolio/01-thumbnail.jpg" alt="">
-                    </a>
-                    <div class="portfolio-caption">
-                      <h4>Threads</h4>
-                      <p class="text-muted">Illustration</p>
-                    </div>
-                  </div>
-                  <div class="col-md-4 col-sm-6 portfolio-item">
-                    <a class="portfolio-link" data-toggle="modal" href="#portfolioModal2">
-                      <div class="portfolio-hover">
-                        <div class="portfolio-hover-content">
-                          <i class="fa fa-plus fa-3x"></i>
-                        </div>
-                      </div>
-                      <img class="img-fluid" src="img/portfolio/02-thumbnail.jpg" alt="">
-                    </a>
-                    <div class="portfolio-caption">
-                      <h4>Explore</h4>
-                      <p class="text-muted">Graphic Design</p>
-                    </div>
-                  </div>
-                  <div class="col-md-4 col-sm-6 portfolio-item">
-                    <a class="portfolio-link" data-toggle="modal" href="#portfolioModal3">
-                      <div class="portfolio-hover">
-                        <div class="portfolio-hover-content">
-                          <i class="fa fa-plus fa-3x"></i>
-                        </div>
-                      </div>
-                      <img class="img-fluid" src="img/portfolio/03-thumbnail.jpg" alt="">
-                    </a>
-                    <div class="portfolio-caption">
-                      <h4>Finish</h4>
-                      <p class="text-muted">Identity</p>
-                    </div>
-                  </div>
-                  <div class="col-md-4 col-sm-6 portfolio-item">
-                    <a class="portfolio-link" data-toggle="modal" href="#portfolioModal4">
-                      <div class="portfolio-hover">
-                        <div class="portfolio-hover-content">
-                          <i class="fa fa-plus fa-3x"></i>
-                        </div>
-                      </div>
-                      <img class="img-fluid" src="img/portfolio/04-thumbnail.jpg" alt="">
-                    </a>
-                    <div class="portfolio-caption">
-                      <h4>Lines</h4>
-                      <p class="text-muted">Branding</p>
-                    </div>
-                  </div>
-                  <div class="col-md-4 col-sm-6 portfolio-item">
-                    <a class="portfolio-link" data-toggle="modal" href="#portfolioModal5">
-                      <div class="portfolio-hover">
-                        <div class="portfolio-hover-content">
-                          <i class="fa fa-plus fa-3x"></i>
-                        </div>
-                      </div>
-                      <img class="img-fluid" src="img/portfolio/05-thumbnail.jpg" alt="">
-                    </a>
-                    <div class="portfolio-caption">
-                      <h4>Southwest</h4>
-                      <p class="text-muted">Website Design</p>
-                    </div>
-                  </div>
-                  <div class="col-md-4 col-sm-6 portfolio-item">
-                    <a class="portfolio-link" data-toggle="modal" href="#portfolioModal6">
-                      <div class="portfolio-hover">
-                        <div class="portfolio-hover-content">
-                          <i class="fa fa-plus fa-3x"></i>
-                        </div>
-                      </div>
-                      <img class="img-fluid" src="img/portfolio/06-thumbnail.jpg" alt="">
-                    </a>
-                    <div class="portfolio-caption">
-                      <h4>Window</h4>
-                      <p class="text-muted">Photography</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </section>-->
+                    <div class="col-10 mx-auto">
+                        <h1>Cart</h1>
+                        <% if (session.getAttribute("products") == null) { %>
+                        <div>
 
-        <!--     About 
-            <section id="about">
-              <div class="container">
-                <div class="row">
-                  <div class="col-lg-12 text-center">
-                    <h2 class="section-heading text-uppercase">About</h2>
-                    <h3 class="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3>
-                  </div>
+                        </div>
+                        <% } else { %>
+                        <table id="example" class="table" style="display: block;width: 100%;max-height: 70vh;overflow-y: auto;-ms-overflow-style: -ms-autohiding-scrollbar;">
+                            <thead>
+                            <th>#</th>
+                            <th>No</th>
+                            <th>Product Code</th>
+                            <th>Product Name</th>
+                            <th>Product Line</th>
+                            <th>Scale</th>
+                            <th>Price</th>
+                            <th>Remove</th>
+                            </thead>
+                            <tbody>
+                                <c:forEach items="${cart.lineItems}" var="lineItem" varStatus="vs">
+                                    <tr>
+                                        <td><img src="model-images/${lineItem.product.productCode}.jpg" width="120"/></td>
+                                        <td>${vs.count}</td>
+                                        <td>${lineItem.product.productCode}</td>
+                                        <td>${lineItem.product.productName}</td>
+                                        <td>${lineItem.product.productLine}</td> 
+                                        <td>${lineItem.product.productScale}</td> 
+                                        <td>${lineItem.product.msrp}</td>
+                                        <td>
+                                            <form action="RemoveItem" method="post">
+                                                <input type="hidden" value="${lineItem.product.productCode}" name="productCode"/>
+                                                <input type="submit" value="Remove"/>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                </c:forEach>
+                            </tbody>
+                        </table>
+                        
+                        <% }%>
+                        <a href="go.jsp"><button>GO !!!</button></a>
+                    </div>
                 </div>
-                <div class="row">
-                  <div class="col-lg-12">
-                    <ul class="timeline">
-                      <li>
-                        <div class="timeline-image">
-                          <img class="rounded-circle img-fluid" src="img/about/1.jpg" alt="">
-                        </div>
-                        <div class="timeline-panel">
-                          <div class="timeline-heading">
-                            <h4>2009-2011</h4>
-                            <h4 class="subheading">Our Humble Beginnings</h4>
-                          </div>
-                          <div class="timeline-body">
-                            <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt ut voluptatum eius sapiente, totam reiciendis temporibus qui quibusdam, recusandae sit vero unde, sed, incidunt et ea quo dolore laudantium consectetur!</p>
-                          </div>
-                        </div>
-                      </li>
-                      <li class="timeline-inverted">
-                        <div class="timeline-image">
-                          <img class="rounded-circle img-fluid" src="img/about/2.jpg" alt="">
-                        </div>
-                        <div class="timeline-panel">
-                          <div class="timeline-heading">
-                            <h4>March 2011</h4>
-                            <h4 class="subheading">An Agency is Born</h4>
-                          </div>
-                          <div class="timeline-body">
-                            <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt ut voluptatum eius sapiente, totam reiciendis temporibus qui quibusdam, recusandae sit vero unde, sed, incidunt et ea quo dolore laudantium consectetur!</p>
-                          </div>
-                        </div>
-                      </li>
-                      <li>
-                        <div class="timeline-image">
-                          <img class="rounded-circle img-fluid" src="img/about/3.jpg" alt="">
-                        </div>
-                        <div class="timeline-panel">
-                          <div class="timeline-heading">
-                            <h4>December 2012</h4>
-                            <h4 class="subheading">Transition to Full Service</h4>
-                          </div>
-                          <div class="timeline-body">
-                            <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt ut voluptatum eius sapiente, totam reiciendis temporibus qui quibusdam, recusandae sit vero unde, sed, incidunt et ea quo dolore laudantium consectetur!</p>
-                          </div>
-                        </div>
-                      </li>
-                      <li class="timeline-inverted">
-                        <div class="timeline-image">
-                          <img class="rounded-circle img-fluid" src="img/about/4.jpg" alt="">
-                        </div>
-                        <div class="timeline-panel">
-                          <div class="timeline-heading">
-                            <h4>July 2014</h4>
-                            <h4 class="subheading">Phase Two Expansion</h4>
-                          </div>
-                          <div class="timeline-body">
-                            <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt ut voluptatum eius sapiente, totam reiciendis temporibus qui quibusdam, recusandae sit vero unde, sed, incidunt et ea quo dolore laudantium consectetur!</p>
-                          </div>
-                        </div>
-                      </li>
-                      <li class="timeline-inverted">
-                        <div class="timeline-image">
-                          <h4>Be Part
-                            <br>Of Our
-                            <br>Story!</h4>
-                        </div>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            </section>-->
+            </div>
+        </section>
 
-        <!--     Team 
-            <section class="bg-light" id="team">
-              <div class="container">
-                <div class="row">
-                  <div class="col-lg-12 text-center">
-                    <h2 class="section-heading text-uppercase">Our Amazing Team</h2>
-                    <h3 class="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3>
-                  </div>
+        <!-- แม่สูตรคูณ -->
+        <section style="height: 100vh;" id="tablecal">
+            <div  class="col-4 mx-auto">
+                <form action="CalNumber" method="post" class="form-group form-row">
+                    <label class="col-3 form-control" for="number">Enter number : </label>
+                    <input class="col-7 form-control" type="text" id="number" placeholder="enter..." name="number">
+                    <input class="col-2 form-control" type="submit" value="Send">
+                </form>
+                <div class="col-8 mx-auto text-center">
+                    <table class="mx-auto">
+                        <tr>
+                            <th class="col">number</th>
+                            <th class="col"> x </th>
+                            <th class="col">count</th> 
+                            <th class="col"> = </th>
+                            <th class="col">result</th> 
+                        </tr>
+                        <c:forEach items="${result}" var="re" varStatus="vs">
+                            <tr>
+                                <td>${cn.number}</td>
+                                <td> x </td>
+                                <td>${vs.count}</td>
+                                <td> = </td>
+                                <td>${re}</td>
+                            </tr>
+                        </c:forEach>
+                    </table>
                 </div>
-                <div class="row">
-                  <div class="col-sm-4">
-                    <div class="team-member">
-                      <img class="mx-auto rounded-circle" src="img/team/1.jpg" alt="">
-                      <h4>Kay Garland</h4>
-                      <p class="text-muted">Lead Designer</p>
-                      <ul class="list-inline social-buttons">
-                        <li class="list-inline-item">
-                          <a href="#">
-                            <i class="fa fa-twitter"></i>
-                          </a>
-                        </li>
-                        <li class="list-inline-item">
-                          <a href="#">
-                            <i class="fa fa-facebook"></i>
-                          </a>
-                        </li>
-                        <li class="list-inline-item">
-                          <a href="#">
-                            <i class="fa fa-linkedin"></i>
-                          </a>
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                  <div class="col-sm-4">
-                    <div class="team-member">
-                      <img class="mx-auto rounded-circle" src="img/team/2.jpg" alt="">
-                      <h4>Larry Parker</h4>
-                      <p class="text-muted">Lead Marketer</p>
-                      <ul class="list-inline social-buttons">
-                        <li class="list-inline-item">
-                          <a href="#">
-                            <i class="fa fa-twitter"></i>
-                          </a>
-                        </li>
-                        <li class="list-inline-item">
-                          <a href="#">
-                            <i class="fa fa-facebook"></i>
-                          </a>
-                        </li>
-                        <li class="list-inline-item">
-                          <a href="#">
-                            <i class="fa fa-linkedin"></i>
-                          </a>
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                  <div class="col-sm-4">
-                    <div class="team-member">
-                      <img class="mx-auto rounded-circle" src="img/team/3.jpg" alt="">
-                      <h4>Diana Pertersen</h4>
-                      <p class="text-muted">Lead Developer</p>
-                      <ul class="list-inline social-buttons">
-                        <li class="list-inline-item">
-                          <a href="#">
-                            <i class="fa fa-twitter"></i>
-                          </a>
-                        </li>
-                        <li class="list-inline-item">
-                          <a href="#">
-                            <i class="fa fa-facebook"></i>
-                          </a>
-                        </li>
-                        <li class="list-inline-item">
-                          <a href="#">
-                            <i class="fa fa-linkedin"></i>
-                          </a>
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-lg-8 mx-auto text-center">
-                    <p class="large text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut eaque, laboriosam veritatis, quos non quis ad perspiciatis, totam corporis ea, alias ut unde.</p>
-                  </div>
-                </div>
-              </div>
-            </section>-->
-
-        <!--     Clients 
-            <section class="py-5">
-              <div class="container">
-                <div class="row">
-                  <div class="col-md-3 col-sm-6">
-                    <a href="#">
-                      <img class="img-fluid d-block mx-auto" src="img/logos/envato.jpg" alt="">
-                    </a>
-                  </div>
-                  <div class="col-md-3 col-sm-6">
-                    <a href="#">
-                      <img class="img-fluid d-block mx-auto" src="img/logos/designmodo.jpg" alt="">
-                    </a>
-                  </div>
-                  <div class="col-md-3 col-sm-6">
-                    <a href="#">
-                      <img class="img-fluid d-block mx-auto" src="img/logos/themeforest.jpg" alt="">
-                    </a>
-                  </div>
-                  <div class="col-md-3 col-sm-6">
-                    <a href="#">
-                      <img class="img-fluid d-block mx-auto" src="img/logos/creative-market.jpg" alt="">
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </section>
-        
-             Contact 
-            <section id="contact">
-              <div class="container">
-                <div class="row">
-                  <div class="col-lg-12 text-center">
-                    <h2 class="section-heading text-uppercase">Contact Us</h2>
-                    <h3 class="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-lg-12">
-                    <form id="contactForm" name="sentMessage" novalidate="novalidate">
-                      <div class="row">
-                        <div class="col-md-6">
-                          <div class="form-group">
-                            <input class="form-control" id="name" type="text" placeholder="Your Name *" required="required" data-validation-required-message="Please enter your name.">
-                            <p class="help-block text-danger"></p>
-                          </div>
-                          <div class="form-group">
-                            <input class="form-control" id="email" type="email" placeholder="Your Email *" required="required" data-validation-required-message="Please enter your email address.">
-                            <p class="help-block text-danger"></p>
-                          </div>
-                          <div class="form-group">
-                            <input class="form-control" id="phone" type="tel" placeholder="Your Phone *" required="required" data-validation-required-message="Please enter your phone number.">
-                            <p class="help-block text-danger"></p>
-                          </div>
-                        </div>
-                        <div class="col-md-6">
-                          <div class="form-group">
-                            <textarea class="form-control" id="message" placeholder="Your Message *" required="required" data-validation-required-message="Please enter a message."></textarea>
-                            <p class="help-block text-danger"></p>
-                          </div>
-                        </div>
-                        <div class="clearfix"></div>
-                        <div class="col-lg-12 text-center">
-                          <div id="success"></div>
-                          <button id="sendMessageButton" class="btn btn-primary btn-xl text-uppercase" type="submit">Send Message</button>
-                        </div>
-                      </div>
-                    </form>
-                  </div>
-                </div>
-              </div>
-            </section>-->
+            </div>
+        </section>
 
         <!-- Footer -->
         <footer>
@@ -565,19 +357,20 @@
             </div>
         </footer>
 
-        <!-- Bootstrap core JavaScript -->
+
         <script src="vendor/jquery/jquery.min.js"></script>
         <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-        <!-- Plugin JavaScript -->
         <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
 
-        <!-- Contact form JavaScript -->
-        <script src="js/jqBootstrapValidation.js"></script>
-        <script src="js/contact_me.js"></script>
+        <script src="js/agency.js"></script>
 
-        <!-- Custom scripts for this template -->
-        <script src="js/agency.min.js"></script>
+        <script src="js/datatables.min.js"></script>
+        <script>
+            $(document).ready(function () {
+                $('#example').DataTable();
+            });
+        </script>
 
     </body>
 
