@@ -13,6 +13,6 @@
     </head>
     <body>
         <h1>Hello World!</h1>
-        <jsp:include page="/Header.jsp" />
+        <jsp:include page="/Header.jsp?title=sadasda" />
     </body>
 </html>

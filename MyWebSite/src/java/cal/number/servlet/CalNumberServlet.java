@@ -40,7 +40,7 @@ public class CalNumberServlet extends HttpServlet {
         session.setAttribute("result", result);
         session.setAttribute("cn", cn);
 
-        response.sendRedirect("index.jsp#tablecal");
+        response.sendRedirect("index.jsp#multiplication");
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

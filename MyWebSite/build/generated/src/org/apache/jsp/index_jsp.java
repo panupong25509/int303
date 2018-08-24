@@ -92,7 +92,9 @@ public final class index_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("    <body id=\"page-top\">\r\n");
       out.write("\r\n");
       out.write("        <!-- Navigation -->\r\n");
-      out.write("        <nav class=\"navbar navbar-expand-lg navbar-dark fixed-top\" id=\"mainNav\">\r\n");
+      out.write("        <nav class=\"navbar navbar-expand-lg navbar-dark fixed-top\" id=\"mainNav\" style=\"background-color: ");
+      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${cookie.bgColor.value}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+      out.write("\">\r\n");
       out.write("            <div class=\"container\">\r\n");
       out.write("                <a class=\"navbar-brand js-scroll-trigger\" href=\"#page-top\">JOK SITE</a>\r\n");
       out.write("                <button class=\"navbar-toggler navbar-toggler-right\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarResponsive\" aria-controls=\"navbarResponsive\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\r\n");
@@ -107,18 +109,19 @@ public final class index_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                        <li class=\"nav-item\">\r\n");
       out.write("                            <a class=\"nav-link js-scroll-trigger\" href=\"#simplecalc\">Simple Calculator</a>\r\n");
       out.write("                        </li>\r\n");
-      out.write("<!--                        <li class=\"nav-item\">\r\n");
-      out.write("                            <a class=\"nav-link js-scroll-trigger\" href=\"#primenumber\">Prime nummber Checked</a>\r\n");
-      out.write("                        </li>\r\n");
+      out.write("                        <!--                        <li class=\"nav-item\">\r\n");
+      out.write("                                                    <a class=\"nav-link js-scroll-trigger\" href=\"#primenumber\">Prime nummber Checked</a>\r\n");
+      out.write("                                                </li>\r\n");
+      out.write("                                                <li class=\"nav-item\">\r\n");
+      out.write("                                                    <a class=\"nav-link js-scroll-trigger\" href=\"#registerit\">Register IT</a>\r\n");
+      out.write("                                                </li>-->\r\n");
       out.write("                        <li class=\"nav-item\">\r\n");
-      out.write("                            <a class=\"nav-link js-scroll-trigger\" href=\"#registerit\">Register IT</a>\r\n");
-      out.write("                        </li>-->\r\n");
+      out.write("                            <a class=\"nav-link js-scroll-trigger\" href=\"#multiplication\">multiplication table</a>\r\n");
+      out.write("                        </li> \r\n");
       out.write("                        <li class=\"nav-item\">\r\n");
       out.write("                            <a class=\"nav-link js-scroll-trigger\" href=\"#productlist\">Product List</a>\r\n");
       out.write("                        </li> \r\n");
-      out.write("                        <li class=\"nav-item\">\r\n");
-      out.write("                            <a class=\"nav-link js-scroll-trigger\" href=\"#tablecal\">แม่สูตรคูณ</a>\r\n");
-      out.write("                        </li> \r\n");
+      out.write("\r\n");
       out.write("                        <li class=\"nav-item\">\r\n");
       out.write("                            <a class=\"nav-link js-scroll-trigger\" href=\"#cart\"><i class=\"fa fa-cart-plus\"></i> (");
       out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${cart.totalQuantity}", java.lang.String.class, (PageContext)_jspx_page_context, null));
@@ -131,7 +134,7 @@ public final class index_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("\r\n");
       out.write("        <!-- Header -->\r\n");
       out.write("        <header class=\"masthead\">\r\n");
-      out.write("            <div class=\"container\" style=\"min-height: 100vh;\">\r\n");
+      out.write("            <div class=\"container\" style=\"max-height: 100vh;\">\r\n");
       out.write("                <div class=\"intro-text\">\r\n");
       out.write("                    <div class=\"col-sm-4 mx-auto\">\r\n");
       out.write("                        <div class=\"team-member\">\r\n");
@@ -155,6 +158,20 @@ public final class index_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                                    </a>\r\n");
       out.write("                                </li>\r\n");
       out.write("                            </ul>\r\n");
+      out.write("                            ---------------------------------<br>\r\n");
+      out.write("                            <a onclick=\"ShowSelectBg()\" style=\"cursor: pointer\">Choose Background Color</a><br>\r\n");
+      out.write("                            ---------------------------------\r\n");
+      out.write("                            <div id=\"choosebackground\" style=\"display: none\">\r\n");
+      out.write("                                <form action=\"ChooseBackground\" method=\"post\">\r\n");
+      out.write("                                    <select name=\"bgColor\">\r\n");
+      out.write("                                        <option selected>Color</option>\r\n");
+      out.write("                                        <option value=\"slategray\" style=\"background-color: slategray\">Slategray</option>\r\n");
+      out.write("                                        <option value=\"navy\" style=\"background-color: navy\">Navy Blue</option>\r\n");
+      out.write("                                        <option value=\"silver\" style=\"background-color: silver\">Silver</option>\r\n");
+      out.write("                                    </select>\r\n");
+      out.write("                                    <input type=\"submit\" value=\"Send\">\r\n");
+      out.write("                                </form> \r\n");
+      out.write("                            </div>\r\n");
       out.write("                        </div>\r\n");
       out.write("                    </div>\r\n");
       out.write("                </div>\r\n");
@@ -180,13 +197,13 @@ public final class index_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                            <h4 class=\"service-heading\">Simple Calculator</h4>\r\n");
       out.write("                        </div>\r\n");
       out.write("                    </a>\r\n");
-      out.write("                    <a href=\"#page-top\" style=\"text-decoration: none;\" class=\"col-md-3 js-scroll-trigger\">\r\n");
+      out.write("                    <a href=\"#multiplication\" style=\"text-decoration: none;\" class=\"col-md-3 js-scroll-trigger\">\r\n");
       out.write("                        <div style=\"cursor: pointer;\">\r\n");
       out.write("                            <span class=\"fa-stack fa-4x\">\r\n");
       out.write("                                <i class=\"fa fa-circle fa-stack-2x text-primary\"></i>\r\n");
       out.write("                                <i class=\"fa fa-check fa-stack-1x fa-inverse\"></i>\r\n");
       out.write("                            </span>\r\n");
-      out.write("                            <h4 class=\"service-heading\">Prime number Checked</h4>\r\n");
+      out.write("                            <h4 class=\"service-heading\">MULTIPLICATION TABLE</h4>\r\n");
       out.write("                        </div>\r\n");
       out.write("                    </a>\r\n");
       out.write("                    <a href=\"#page-top\" style=\"text-decoration: none;\" class=\"col-md-3 js-scroll-trigger\">\r\n");
@@ -250,8 +267,35 @@ public final class index_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                </div>\r\n");
       out.write("            </div>\r\n");
       out.write("        </section>\r\n");
+      out.write("        <!-- multiplication -->\r\n");
+      out.write("        <section style=\"height: 100vh;\" id=\"multiplication\">\r\n");
+      out.write("            <div  class=\"col-4 mx-auto\">\r\n");
+      out.write("                <form action=\"CalNumber\" method=\"post\" class=\"form-group form-row\">\r\n");
+      out.write("                    <label class=\"col-3 form-control\" for=\"number\">Enter number : </label>\r\n");
+      out.write("                    <input class=\"col-7 form-control\" type=\"text\" id=\"number\" placeholder=\"enter...\" name=\"number\">\r\n");
+      out.write("                    <input class=\"col-2 form-control\" type=\"submit\" value=\"Send\">\r\n");
+      out.write("                </form>\r\n");
+      out.write("                <div class=\"col-8 mx-auto text-center\">\r\n");
+      out.write("                    <table class=\"mx-auto\">\r\n");
+      out.write("                        <tr>\r\n");
+      out.write("                            <th class=\"col\">number</th>\r\n");
+      out.write("                            <th class=\"col\"> x </th>\r\n");
+      out.write("                            <th class=\"col\">count</th> \r\n");
+      out.write("                            <th class=\"col\"> = </th>\r\n");
+      out.write("                            <th class=\"col\">result</th> \r\n");
+      out.write("                        </tr>\r\n");
+      out.write("                        ");
+      if (_jspx_meth_c_forEach_0(_jspx_page_context))
+        return;
+      out.write("\r\n");
+      out.write("                    </table>\r\n");
+      out.write("                </div>\r\n");
+      out.write("            </div>\r\n");
+      out.write("        </section>\r\n");
+      out.write("\r\n");
+      out.write("\r\n");
       out.write("        <!-- Product List -->\r\n");
-      out.write("        <section style=\"min-height: 100vh;\" id=\"productlist\">\r\n");
+      out.write("        <section style=\"min-height: 100vh;background-color: #fed136;\" id=\"productlist\">\r\n");
       out.write("            <div class=\"container\">\r\n");
       out.write("                <div class=\"row\">\r\n");
       out.write("                    <div class=\"col-10 mx-auto\">\r\n");
@@ -277,7 +321,7 @@ public final class index_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                            </thead>\r\n");
       out.write("                            <tbody>\r\n");
       out.write("                                ");
-      if (_jspx_meth_c_forEach_0(_jspx_page_context))
+      if (_jspx_meth_c_forEach_1(_jspx_page_context))
         return;
       out.write("\r\n");
       out.write("                            </tbody>\r\n");
@@ -291,7 +335,7 @@ public final class index_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("            </div>\r\n");
       out.write("        </section>\r\n");
       out.write("        <!-- Cart -->\r\n");
-      out.write("        <section style=\"min-height: 100vh;background-color: #fed136;\" id=\"cart\">\r\n");
+      out.write("        <section style=\"min-height: 100vh;\" id=\"cart\">\r\n");
       out.write("            <div class=\"container\">\r\n");
       out.write("                <div class=\"row\">\r\n");
       out.write("                    <div class=\"col-10 mx-auto\">\r\n");
@@ -318,43 +362,17 @@ public final class index_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                            </thead>\r\n");
       out.write("                            <tbody>\r\n");
       out.write("                                ");
-      if (_jspx_meth_c_forEach_1(_jspx_page_context))
+      if (_jspx_meth_c_forEach_2(_jspx_page_context))
         return;
       out.write("\r\n");
       out.write("                            </tbody>\r\n");
       out.write("                        </table>\r\n");
-      out.write("                        \r\n");
+      out.write("\r\n");
       out.write("                        ");
  }
       out.write("\r\n");
       out.write("                        <a href=\"go.jsp\"><button>GO !!!</button></a>\r\n");
       out.write("                    </div>\r\n");
-      out.write("                </div>\r\n");
-      out.write("            </div>\r\n");
-      out.write("        </section>\r\n");
-      out.write("\r\n");
-      out.write("        <!-- แม่สูตรคูณ -->\r\n");
-      out.write("        <section style=\"height: 100vh;\" id=\"tablecal\">\r\n");
-      out.write("            <div  class=\"col-4 mx-auto\">\r\n");
-      out.write("                <form action=\"CalNumber\" method=\"post\" class=\"form-group form-row\">\r\n");
-      out.write("                    <label class=\"col-3 form-control\" for=\"number\">Enter number : </label>\r\n");
-      out.write("                    <input class=\"col-7 form-control\" type=\"text\" id=\"number\" placeholder=\"enter...\" name=\"number\">\r\n");
-      out.write("                    <input class=\"col-2 form-control\" type=\"submit\" value=\"Send\">\r\n");
-      out.write("                </form>\r\n");
-      out.write("                <div class=\"col-8 mx-auto text-center\">\r\n");
-      out.write("                    <table class=\"mx-auto\">\r\n");
-      out.write("                        <tr>\r\n");
-      out.write("                            <th class=\"col\">number</th>\r\n");
-      out.write("                            <th class=\"col\"> x </th>\r\n");
-      out.write("                            <th class=\"col\">count</th> \r\n");
-      out.write("                            <th class=\"col\"> = </th>\r\n");
-      out.write("                            <th class=\"col\">result</th> \r\n");
-      out.write("                        </tr>\r\n");
-      out.write("                        ");
-      if (_jspx_meth_c_forEach_2(_jspx_page_context))
-        return;
-      out.write("\r\n");
-      out.write("                    </table>\r\n");
       out.write("                </div>\r\n");
       out.write("            </div>\r\n");
       out.write("        </section>\r\n");
@@ -409,9 +427,22 @@ public final class index_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("\r\n");
       out.write("        <script src=\"js/datatables.min.js\"></script>\r\n");
       out.write("        <script>\r\n");
+      out.write("            let showBg = false;\r\n");
       out.write("            $(document).ready(function () {\r\n");
       out.write("                $('#example').DataTable();\r\n");
       out.write("            });\r\n");
+      out.write("            \r\n");
+      out.write("            function ShowSelectBg() {\r\n");
+      out.write("                if(showBg){\r\n");
+      out.write("                    document.getElementById(\"choosebackground\").style.display = \"none\";\r\n");
+      out.write("                    showBg = false;\r\n");
+      out.write("                } else {\r\n");
+      out.write("                    document.getElementById(\"choosebackground\").style.display = \"block\";\r\n");
+      out.write("                    showBg = true;\r\n");
+      out.write("                }\r\n");
+      out.write("                \r\n");
+      out.write("            }\r\n");
+      out.write("\r\n");
       out.write("        </script>\r\n");
       out.write("\r\n");
       out.write("    </body>\r\n");
@@ -438,13 +469,63 @@ public final class index_jsp extends org.apache.jasper.runtime.HttpJspBase
     org.apache.taglibs.standard.tag.rt.core.ForEachTag _jspx_th_c_forEach_0 = (org.apache.taglibs.standard.tag.rt.core.ForEachTag) _jspx_tagPool_c_forEach_varStatus_var_items.get(org.apache.taglibs.standard.tag.rt.core.ForEachTag.class);
     _jspx_th_c_forEach_0.setPageContext(_jspx_page_context);
     _jspx_th_c_forEach_0.setParent(null);
-    _jspx_th_c_forEach_0.setItems((java.lang.Object) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${products}", java.lang.Object.class, (PageContext)_jspx_page_context, null));
-    _jspx_th_c_forEach_0.setVar("p");
+    _jspx_th_c_forEach_0.setItems((java.lang.Object) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${result}", java.lang.Object.class, (PageContext)_jspx_page_context, null));
+    _jspx_th_c_forEach_0.setVar("re");
     _jspx_th_c_forEach_0.setVarStatus("vs");
     int[] _jspx_push_body_count_c_forEach_0 = new int[] { 0 };
     try {
       int _jspx_eval_c_forEach_0 = _jspx_th_c_forEach_0.doStartTag();
       if (_jspx_eval_c_forEach_0 != javax.servlet.jsp.tagext.Tag.SKIP_BODY) {
+        do {
+          out.write("\r\n");
+          out.write("                            <tr>\r\n");
+          out.write("                                <td>");
+          out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${cn.number}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+          out.write("</td>\r\n");
+          out.write("                                <td> x </td>\r\n");
+          out.write("                                <td>");
+          out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${vs.count}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+          out.write("</td>\r\n");
+          out.write("                                <td> = </td>\r\n");
+          out.write("                                <td>");
+          out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${re}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+          out.write("</td>\r\n");
+          out.write("                            </tr>\r\n");
+          out.write("                        ");
+          int evalDoAfterBody = _jspx_th_c_forEach_0.doAfterBody();
+          if (evalDoAfterBody != javax.servlet.jsp.tagext.BodyTag.EVAL_BODY_AGAIN)
+            break;
+        } while (true);
+      }
+      if (_jspx_th_c_forEach_0.doEndTag() == javax.servlet.jsp.tagext.Tag.SKIP_PAGE) {
+        return true;
+      }
+    } catch (Throwable _jspx_exception) {
+      while (_jspx_push_body_count_c_forEach_0[0]-- > 0)
+        out = _jspx_page_context.popBody();
+      _jspx_th_c_forEach_0.doCatch(_jspx_exception);
+    } finally {
+      _jspx_th_c_forEach_0.doFinally();
+      _jspx_tagPool_c_forEach_varStatus_var_items.reuse(_jspx_th_c_forEach_0);
+    }
+    return false;
+  }
+
+  private boolean _jspx_meth_c_forEach_1(PageContext _jspx_page_context)
+          throws Throwable {
+    PageContext pageContext = _jspx_page_context;
+    JspWriter out = _jspx_page_context.getOut();
+    //  c:forEach
+    org.apache.taglibs.standard.tag.rt.core.ForEachTag _jspx_th_c_forEach_1 = (org.apache.taglibs.standard.tag.rt.core.ForEachTag) _jspx_tagPool_c_forEach_varStatus_var_items.get(org.apache.taglibs.standard.tag.rt.core.ForEachTag.class);
+    _jspx_th_c_forEach_1.setPageContext(_jspx_page_context);
+    _jspx_th_c_forEach_1.setParent(null);
+    _jspx_th_c_forEach_1.setItems((java.lang.Object) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${products}", java.lang.Object.class, (PageContext)_jspx_page_context, null));
+    _jspx_th_c_forEach_1.setVar("p");
+    _jspx_th_c_forEach_1.setVarStatus("vs");
+    int[] _jspx_push_body_count_c_forEach_1 = new int[] { 0 };
+    try {
+      int _jspx_eval_c_forEach_1 = _jspx_th_c_forEach_1.doStartTag();
+      if (_jspx_eval_c_forEach_1 != javax.servlet.jsp.tagext.Tag.SKIP_BODY) {
         do {
           out.write("\r\n");
           out.write("                                    <tr>\r\n");
@@ -479,40 +560,40 @@ public final class index_jsp extends org.apache.jasper.runtime.HttpJspBase
           out.write("                                        </td>\r\n");
           out.write("                                    </tr>\r\n");
           out.write("                                ");
-          int evalDoAfterBody = _jspx_th_c_forEach_0.doAfterBody();
+          int evalDoAfterBody = _jspx_th_c_forEach_1.doAfterBody();
           if (evalDoAfterBody != javax.servlet.jsp.tagext.BodyTag.EVAL_BODY_AGAIN)
             break;
         } while (true);
       }
-      if (_jspx_th_c_forEach_0.doEndTag() == javax.servlet.jsp.tagext.Tag.SKIP_PAGE) {
+      if (_jspx_th_c_forEach_1.doEndTag() == javax.servlet.jsp.tagext.Tag.SKIP_PAGE) {
         return true;
       }
     } catch (Throwable _jspx_exception) {
-      while (_jspx_push_body_count_c_forEach_0[0]-- > 0)
+      while (_jspx_push_body_count_c_forEach_1[0]-- > 0)
         out = _jspx_page_context.popBody();
-      _jspx_th_c_forEach_0.doCatch(_jspx_exception);
+      _jspx_th_c_forEach_1.doCatch(_jspx_exception);
     } finally {
-      _jspx_th_c_forEach_0.doFinally();
-      _jspx_tagPool_c_forEach_varStatus_var_items.reuse(_jspx_th_c_forEach_0);
+      _jspx_th_c_forEach_1.doFinally();
+      _jspx_tagPool_c_forEach_varStatus_var_items.reuse(_jspx_th_c_forEach_1);
     }
     return false;
   }
 
-  private boolean _jspx_meth_c_forEach_1(PageContext _jspx_page_context)
+  private boolean _jspx_meth_c_forEach_2(PageContext _jspx_page_context)
           throws Throwable {
     PageContext pageContext = _jspx_page_context;
     JspWriter out = _jspx_page_context.getOut();
     //  c:forEach
-    org.apache.taglibs.standard.tag.rt.core.ForEachTag _jspx_th_c_forEach_1 = (org.apache.taglibs.standard.tag.rt.core.ForEachTag) _jspx_tagPool_c_forEach_varStatus_var_items.get(org.apache.taglibs.standard.tag.rt.core.ForEachTag.class);
-    _jspx_th_c_forEach_1.setPageContext(_jspx_page_context);
-    _jspx_th_c_forEach_1.setParent(null);
-    _jspx_th_c_forEach_1.setItems((java.lang.Object) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${cart.lineItems}", java.lang.Object.class, (PageContext)_jspx_page_context, null));
-    _jspx_th_c_forEach_1.setVar("lineItem");
-    _jspx_th_c_forEach_1.setVarStatus("vs");
-    int[] _jspx_push_body_count_c_forEach_1 = new int[] { 0 };
+    org.apache.taglibs.standard.tag.rt.core.ForEachTag _jspx_th_c_forEach_2 = (org.apache.taglibs.standard.tag.rt.core.ForEachTag) _jspx_tagPool_c_forEach_varStatus_var_items.get(org.apache.taglibs.standard.tag.rt.core.ForEachTag.class);
+    _jspx_th_c_forEach_2.setPageContext(_jspx_page_context);
+    _jspx_th_c_forEach_2.setParent(null);
+    _jspx_th_c_forEach_2.setItems((java.lang.Object) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${cart.lineItems}", java.lang.Object.class, (PageContext)_jspx_page_context, null));
+    _jspx_th_c_forEach_2.setVar("lineItem");
+    _jspx_th_c_forEach_2.setVarStatus("vs");
+    int[] _jspx_push_body_count_c_forEach_2 = new int[] { 0 };
     try {
-      int _jspx_eval_c_forEach_1 = _jspx_th_c_forEach_1.doStartTag();
-      if (_jspx_eval_c_forEach_1 != javax.servlet.jsp.tagext.Tag.SKIP_BODY) {
+      int _jspx_eval_c_forEach_2 = _jspx_th_c_forEach_2.doStartTag();
+      if (_jspx_eval_c_forEach_2 != javax.servlet.jsp.tagext.Tag.SKIP_BODY) {
         do {
           out.write("\r\n");
           out.write("                                    <tr>\r\n");
@@ -547,56 +628,6 @@ public final class index_jsp extends org.apache.jasper.runtime.HttpJspBase
           out.write("                                        </td>\r\n");
           out.write("                                    </tr>\r\n");
           out.write("                                ");
-          int evalDoAfterBody = _jspx_th_c_forEach_1.doAfterBody();
-          if (evalDoAfterBody != javax.servlet.jsp.tagext.BodyTag.EVAL_BODY_AGAIN)
-            break;
-        } while (true);
-      }
-      if (_jspx_th_c_forEach_1.doEndTag() == javax.servlet.jsp.tagext.Tag.SKIP_PAGE) {
-        return true;
-      }
-    } catch (Throwable _jspx_exception) {
-      while (_jspx_push_body_count_c_forEach_1[0]-- > 0)
-        out = _jspx_page_context.popBody();
-      _jspx_th_c_forEach_1.doCatch(_jspx_exception);
-    } finally {
-      _jspx_th_c_forEach_1.doFinally();
-      _jspx_tagPool_c_forEach_varStatus_var_items.reuse(_jspx_th_c_forEach_1);
-    }
-    return false;
-  }
-
-  private boolean _jspx_meth_c_forEach_2(PageContext _jspx_page_context)
-          throws Throwable {
-    PageContext pageContext = _jspx_page_context;
-    JspWriter out = _jspx_page_context.getOut();
-    //  c:forEach
-    org.apache.taglibs.standard.tag.rt.core.ForEachTag _jspx_th_c_forEach_2 = (org.apache.taglibs.standard.tag.rt.core.ForEachTag) _jspx_tagPool_c_forEach_varStatus_var_items.get(org.apache.taglibs.standard.tag.rt.core.ForEachTag.class);
-    _jspx_th_c_forEach_2.setPageContext(_jspx_page_context);
-    _jspx_th_c_forEach_2.setParent(null);
-    _jspx_th_c_forEach_2.setItems((java.lang.Object) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${result}", java.lang.Object.class, (PageContext)_jspx_page_context, null));
-    _jspx_th_c_forEach_2.setVar("re");
-    _jspx_th_c_forEach_2.setVarStatus("vs");
-    int[] _jspx_push_body_count_c_forEach_2 = new int[] { 0 };
-    try {
-      int _jspx_eval_c_forEach_2 = _jspx_th_c_forEach_2.doStartTag();
-      if (_jspx_eval_c_forEach_2 != javax.servlet.jsp.tagext.Tag.SKIP_BODY) {
-        do {
-          out.write("\r\n");
-          out.write("                            <tr>\r\n");
-          out.write("                                <td>");
-          out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${cn.number}", java.lang.String.class, (PageContext)_jspx_page_context, null));
-          out.write("</td>\r\n");
-          out.write("                                <td> x </td>\r\n");
-          out.write("                                <td>");
-          out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${vs.count}", java.lang.String.class, (PageContext)_jspx_page_context, null));
-          out.write("</td>\r\n");
-          out.write("                                <td> = </td>\r\n");
-          out.write("                                <td>");
-          out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${re}", java.lang.String.class, (PageContext)_jspx_page_context, null));
-          out.write("</td>\r\n");
-          out.write("                            </tr>\r\n");
-          out.write("                        ");
           int evalDoAfterBody = _jspx_th_c_forEach_2.doAfterBody();
           if (evalDoAfterBody != javax.servlet.jsp.tagext.BodyTag.EVAL_BODY_AGAIN)
             break;

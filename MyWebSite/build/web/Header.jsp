@@ -13,7 +13,7 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <table class="table">
+        <table style="background-color: ${cookie.bgColor.value}" class="table">
             <tr>
                 <td><h1>${param.title}</h1></td>
                 <td>
@@ -29,9 +29,9 @@
                             Hello
                         </c:otherwise>
                     </c:choose>
-                    
                 </td>
             </tr>
         </table>
+                <h1>${cookie.JSESSIONID.value}</h1>
     </body>
 </html>
